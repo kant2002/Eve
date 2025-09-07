@@ -796,7 +796,7 @@ export class LinearFlow extends DSLBase {
   }
 
   findReference(node:Node) {
-    this.collector.findReference(node);
+    return this.collector.findReference(node);
   }
 
   //------------------------------------------------------------------

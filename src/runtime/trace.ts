@@ -94,11 +94,13 @@ let typeToParentField = {
 }
 
 export interface Frame {type:TraceFrameType};
-export interface ProgramFrame extends Frame {transactions: TransactionFrame[]}
-export interface TransactionFrame extends Frame {id:number, externalInputs:any[], inputs:any[]}
+export interface ProgramFrame extends Frame {type: TraceFrameType.Program, transactions: TransactionFrame[]}
+export interface TransactionFrame extends Frame {type: TraceFrameType.Transaction, id:number, externalInputs:any[], inputs:any[]}
+export interface BlockFrame extends Frame {type: TraceFrameType.Block, name: string, nodes:any[]}
+export interface InputFrame extends Frame {type: TraceFrameType.Input, input: Change, blocks:any[]}
 
 export class Tracer {
-  stack:any[] = [{type:TraceFrameType.Program, transactions: []}];
+  stack: any[] = [{type:TraceFrameType.Program, transactions: []}];
   _currentInput:Change|undefined;
   inputsToOutputs:any = {};
   outputsToInputs:any = {};
@@ -237,7 +239,7 @@ export class Tracer {
       parent = this.stack[0];
       parent.transactions[cur.id] = cur;
     } else {
-      let field = typeToParentField[cur.type];
+      let field = typeToParentField[cur.type as 1 | 2 | 3 | 4 | 5 | 6];
       if(!parent[field]) throw new Error(`Trying to write trace field '${field}', but ${TraceFrameType[parent.type]} doesn't have it`);
       parent[field].push(cur);
     }

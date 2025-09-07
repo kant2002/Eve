@@ -1,4 +1,5 @@
-eve:
-  build: .
-  ports:
-    - 18080:8080
+services:
+  eve:
+    build: .
+    ports:
+      - 18080:8080

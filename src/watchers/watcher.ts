@@ -86,12 +86,10 @@ export class Exporter {
       let {e, a, v, count} = change.reverse();
       if(count === 1) {
         let record = adds[e] = adds[e] || Object.create(null);
-        if(record[a]) throw new Error("@FIXME: accumulateChanges supports only a single value per attribute.");
-        record[a] = v;
+        (record as RawRecord)[a] = v;
       } else {
         let record = removes[e] = removes[e] || Object.create(null);
-        if(record[a]) throw new Error("@FIXME: accumulateChanges supports only a single value per attribute.");
-        record[a] = v;
+        (record as RawRecord)[a] = v;
       }
     }
 

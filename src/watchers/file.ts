@@ -24,7 +24,7 @@ file.error += error
         record({file, path: file.path, encoding})
       ]
     })
-    .asObjects<{file:ID, path:string, encoding:string}>(({adds, removes}) => {
+    .asObjects<{file:ID, path:string, encoding:BufferEncoding}>(({adds, removes}) => {
       Object.keys(adds).forEach((id) => {
         let {file, path, encoding} = adds[id];
           fs.readFile(path, {encoding}, function(err, contents){
@@ -54,7 +54,7 @@ file.error += error
           record({file, path: file.path, encoding, contents: file.contents})
         ]
       })
-      .asObjects<{file:ID, path:string, contents: string, encoding:string}>(({adds, removes}) => {
+      .asObjects<{file:ID, path:string, contents: string, encoding:BufferEncoding}>(({adds, removes}) => {
         Object.keys(adds).forEach((id) => {
           let {file, path, contents, encoding} = adds[id];
           fs.writeFile(path, contents, {encoding: encoding}, function(err){

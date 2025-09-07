@@ -266,7 +266,7 @@ export class Interner {
   // Intern takes a value and gives you the ID associated with it. If there isn't an
   // ID it should create one for this value and in either case it should add a reference.
   intern(value: RawValue): ID {
-    let coll;
+    let coll: {[value:RawValue]: number|undefined};
     if(isNumber(value)) {
       coll = this.numbers;
     } else {
@@ -287,7 +287,7 @@ export class Interner {
   // Get neither creates an ID nor adds a reference to the ID, it only looks up the
   // ID for a value if it exists.
   get(value: RawValue): ID|undefined {
-    let coll;
+    let coll: {[value:RawValue]: number|undefined};
     if(isNumber(value)) {
       coll = this.numbers;
     } else {
@@ -308,7 +308,7 @@ export class Interner {
     this.IDRefCount[id]--;
     if(!this.IDRefCount[id]) {
       let value = this.IDs[id];
-      let coll;
+      let coll: {[value:RawValue]: number|undefined};
       if(isNumber(value)) {
         coll = this.numbers;
       } else {

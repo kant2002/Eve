@@ -122,7 +122,7 @@ export class NoopPerformanceTracker extends PerformanceTracker {
   blockTimeEnd(property:string) {}
 }
 
-export var now: () => any;
+export var now: (start?: any) => any;
 export var elapsed: (start:any) => any;
 if(global.process) {
   now = function(start?): any {

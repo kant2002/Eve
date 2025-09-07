@@ -45,7 +45,7 @@ export interface Canvas extends HTMLCanvasElement { __element?: RawValue }
 export type OperationType = keyof Path2D;
 export interface Operation {type: OperationType, args:any, paths:RawValue[]};
 // {fillStyle: "#000000", strokeStyle: "#000000", lineWidth: 1, lineCap: "butt", lineJoin: "miter"}
-export interface PathStyle {[key:string]: RawValue|undefined, fillStyle?:string, strokeStyle?:string, lineWidth?:number, lineCap?:string, lineJoin?: string };
+export interface PathStyle {[key:string]: RawValue|undefined, fillStyle?:string, strokeStyle?:string, lineWidth?:number, lineCap?:CanvasLineCap, lineJoin?: CanvasLineJoin };
 
 export class CanvasWatcher extends Watcher {
   html:HTMLWatcher;
@@ -188,7 +188,7 @@ export class CanvasWatcher extends Watcher {
           if(!cached) continue // This thing isn't a path (yet?)
 
           let style = this.pathStyles[id] || EMPTY as PathStyle;
-          let {fillStyle = "#000000", strokeStyle = "#000000", lineWidth = 1, lineCap = "butt", lineJoin = "miter"} = style;
+          let {fillStyle = "#000000", strokeStyle = "#000000", lineWidth = 1, lineCap = (<CanvasLineCap>"butt"), lineJoin = ("miter" as CanvasLineJoin)} = style;
           ctx.fillStyle = fillStyle;
           ctx.strokeStyle = strokeStyle;
           ctx.lineWidth = lineWidth;

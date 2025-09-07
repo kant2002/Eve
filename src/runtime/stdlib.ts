@@ -1,5 +1,5 @@
 import {makeFunction, makeMultiFunction, RawValue, AggregateNode} from "./runtime";
-import * as dateformat from "dateformat";
+import dateformat from "dateformat";
 
 //--------------------------------------------------------------------
 // Comparisons

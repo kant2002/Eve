@@ -7,7 +7,7 @@ import * as chev from "chevrotain";
 import {parserErrors, EveError} from "./errors";
 var {Lexer, tokenMatcher} = chev;
 export var Token = chev.Token;
-import * as uuid from "uuid";
+import {v4 as uuid} from "uuid";
 
 //-----------------------------------------------------------
 // Utils
