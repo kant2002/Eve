@@ -1,6 +1,10 @@
 {
   "name": "witheve2",
   "version": "0.3.0-preview5",
+  "publishConfig": {
+      "access": "public",
+      "tag": "preview"
+  },
   "description": "Programming designed for humans",
   "keywords": [
     "language",
@@ -12,7 +16,7 @@
   "homepage": "http://witheve.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kant2002/Eve"
+    "url": "git+https://github.com/kant2002/Eve.git"
   },
   "bugs": {
     "url": "https://github.com/kant2002/Eve/issues"
